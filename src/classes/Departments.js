@@ -1,12 +1,14 @@
-class Roles {
+"use strict";
+
+class Departments {
     constructor(connection){
         this.connection = connection;
     }
     
-    // View all employees
+    // View all departments
     async viewAll(){
         return new Promise((resolve, reject) => {
-            this.connection.query(`SELECT * FROM role;`, function(err, results) {
+            this.connection.query(`SELECT * FROM department;`, function(err, results) {
                 if (err) {
                   return reject(err);
                 }
@@ -15,10 +17,10 @@ class Roles {
         });
     }
 
-    // Add a role
-    async addDepartment(newRole){
+    // Add a department
+    async addDepartment(newDeptName){
         return new Promise((resolve, reject) => {
-            this.connection.query(`INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);`, newRole, function(err, results) {
+            this.connection.query(`INSERT INTO department (name) VALUES (?);`, newDeptName, function(err, results) {
                 if (err) {
                     return reject(err);
                 }
@@ -28,4 +30,4 @@ class Roles {
     }
 }
 
-module.exports = Roles;
+module.exports = Departments;

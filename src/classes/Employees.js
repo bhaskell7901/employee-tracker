@@ -1,3 +1,5 @@
+"use strict";
+
 class Employees {
     constructor(connection){
         this.connection = connection;
