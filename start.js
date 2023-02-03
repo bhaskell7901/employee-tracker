@@ -129,7 +129,7 @@ async function addDepartment(){
     catch (err){
         console.log(err.code);
         console.log(err.sqlMessage);
-        addDepartment();
+        displayMainMenu();
     }
 
 }
@@ -169,7 +169,7 @@ async function addRole(){
     catch (err){
         console.log(err.code);
         console.log(err.sqlMessage);
-        addDepartment();
+        displayMainMenu();
     }
 
 }
@@ -221,7 +221,7 @@ async function addEmployee(){
     catch (err){
         console.log(err.code);
         console.log(err.sqlMessage);
-        addDepartment();
+        displayMainMenu();
     }
 }
 
@@ -258,7 +258,7 @@ async function updateEmployeeRole(){
     catch (err){
         console.log(err.code);
         console.log(err.sqlMessage);
-        addDepartment();
+        displayMainMenu();
     }
 }
 
