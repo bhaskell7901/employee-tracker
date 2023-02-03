@@ -35,6 +35,7 @@ async function displayMainMenu() {
                         "Add - Department",
                         "Add - Role",
                         "Add - Employee",
+                        "View Department - Budget",
                         "Exit"
                     ],
             pageSize: 12
@@ -97,8 +98,15 @@ async function displayMainMenu() {
                 console.log(err);
                 return false;
             }
+        case "View Department - Budget":
+            try{
+                console.table(await departments.viewDepartmentBudgets());
+                return true;
+            } catch(err){
+                console.log(err);
+                return false;
+            }
         case "Exit":
-                // TODO: Transfer back to server and close out
                 console.log("Closing Program...");
                 return false;
         default:
