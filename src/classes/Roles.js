@@ -1,14 +1,21 @@
 "use strict";
 
+const connection = require('../../connection');
+
 class Roles {
-    constructor(connection){
-        this.connection = connection;
-    }
     
     // View all employees
     async viewAll(){
         return new Promise((resolve, reject) => {
-            this.connection.query(`SELECT id, title, CONCAT('$', LPAD(FORMAT(salary,2),11,' ')) as annual_salary, department_id FROM role ORDER BY salary DESC;`, function(err, results) {
+            connection.query(`
+        SELECT 
+            role.id, 
+            title, 
+            name as dept_name, 
+            CONCAT('$', LPAD(FORMAT(salary,2),11,' ')) as annual_salary 
+        FROM role 
+        JOIN department dept ON department_id = dept.id
+        ORDER BY title AND salary DESC;`, function(err, results) {
                 if (err) {
                   return reject(err);
                 }
@@ -18,9 +25,9 @@ class Roles {
     }
 
     // Add a role
-    async addDepartment(newRole){
+    async addRole(newRole){
         return new Promise((resolve, reject) => {
-            this.connection.query(`INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);`, newRole, function(err, results) {
+            connection.query(`INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);`, newRole, function(err, results) {
                 if (err) {
                     return reject(err);
                 }

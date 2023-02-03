@@ -1,14 +1,13 @@
 "use strict";
 
+const connection = require('../../connection');
+
 class Departments {
-    constructor(connection){
-        this.connection = connection;
-    }
     
     // View all departments
     async viewAll(){
         return new Promise((resolve, reject) => {
-            this.connection.query(`SELECT * FROM department;`, function(err, results) {
+            connection.query(`SELECT * FROM department ORDER BY name;`, function(err, results) {
                 if (err) {
                   return reject(err);
                 }
@@ -20,7 +19,7 @@ class Departments {
     // Add a department
     async addDepartment(newDeptName){
         return new Promise((resolve, reject) => {
-            this.connection.query(`INSERT INTO department (name) VALUES (?);`, newDeptName, function(err, results) {
+            connection.query(`INSERT INTO department (name) VALUES (?);`, newDeptName, function(err, results) {
                 if (err) {
                     return reject(err);
                 }

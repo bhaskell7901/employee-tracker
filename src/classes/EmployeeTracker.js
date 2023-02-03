@@ -22,12 +22,14 @@ class EmployeeTracker {
         let again = true;
 
         do{
+            console.log("Hello");
             again = await this.displayMainMenu();
         }while(again);
     }
 
     async displayMainMenu() {
         const answers = await this.inquirer.prompt(this.prompts.mainMenu);
+        console.log(answers);
         switch (answers.mainMenuAction){
             case "View Departments - All":
                 try{
@@ -55,7 +57,7 @@ class EmployeeTracker {
                 }
             case "Update - Employee Role":
                 try{
-                    // TODO: add update Employee Role
+                    const update = await this.updateEmployeeRole();
                     return true;
                 } catch(err){
                     console.log(err);
@@ -92,6 +94,13 @@ class EmployeeTracker {
             default:
                 return false;
         }
+    }
+
+    async updateEmployeeRole(){
+        
+        const answers = await this.inquirer.prompt(this.prompts.updateEmployeeRole);
+        console.log(answers);
+
     }
 }
 
