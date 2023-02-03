@@ -245,8 +245,6 @@ async function updateEmployeeRole(){
         output.push(roleList[roleIndex].id);
         output.push(employeeList[employeeIndex].id);
         
-
-        console.log(output);
         employees.updateEmployee(output);
     }
     catch (err){
